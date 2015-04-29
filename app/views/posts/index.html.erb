@@ -5,8 +5,8 @@
     <% @posts.each do |p| %>
 
       <li><%= link_to p.title, p.link %></li>
-      <%= link_to "Edit this Post", edit_post_path(p.id), :class=>"btn btn-primary" %>
-      <%= link_to "Delete this Post", post_path(p.id), :method => :delete, :class=>"btn btn-danger" %>
+      <%= link_to raw("<i class=\"glyphicon glyphicon-pencil\"></i>"), edit_post_path(p.id), :class=>"btn btn-primary" %>
+      <%= link_to raw("<i class=\"glyphicon glyphicon-trash\"></i>"), post_path(p.id), :method => :delete, data:{confirm: "You will delete this post."}, :class=>"btn btn-danger" %>
 
     <% end %>
   </div>
