@@ -14,7 +14,15 @@ class PostsController < ApplicationController
   def create
     # @post = Post.create(post_params)
     @post = current_user.posts.create(post_params)
-    redirect_to posts_path
+    # redirect_to posts_path
+
+    if @post.save
+      flash[:success] = "New Post Created!"
+      redirect_to root_path
+    else
+      flash[:danger] = "Post Failed"
+      render :new
+    end
   end
 
   def edit

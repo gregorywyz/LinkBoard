@@ -6,7 +6,7 @@
   <div class="col-md-4 col-md-offset-4">
     <% @posts.each do |p| %>
 
-      <li><%= link_to p.title, p.link %></li>
+      <li><%= link_to p.title, p.link %> | <%= p.user.email %></li>
 
     <% end %>
   </div>

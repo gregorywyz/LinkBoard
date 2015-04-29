@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
     length: {minimum: 10, maximum: 100}
 
   validates :link,
-    presence: true
-    # url:
+    presence: true,
+    format: { with: URI::regexp(%w(http https))}
 
 end

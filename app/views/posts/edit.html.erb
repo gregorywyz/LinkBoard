@@ -9,8 +9,9 @@
     <%= bootstrap_form_for @post do |f| %>
     <%= f.text_field :title %>
     <%= f.text_field :link %>
-    <%= f.primary "Edit Post", class: "btn btn-success"  %>
+    <%= f.primary "Update Post", class: "btn btn-success"  %>
     <% end %>
+    <%= link_to "Delete this Post", post_path(@post.id), :method => :delete, :class=>"btn btn-danger" %>
 
   </div>
 </div>
