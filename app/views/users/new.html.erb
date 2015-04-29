@@ -1,0 +1,16 @@
+<h2>New User, SignUp</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= render "layouts/flash" %>
+
+    <%= bootstrap_form_for :user do |f| %>
+      <%= f.text_field :name, placeholder: "Enter your name", icon: "user" %>
+      <%= f.text_field :email, placeholder: "Enter your email", icon: "envelope" %>
+      <%= f.text_field :password, placeholder: "Enter a password", icon: "lock" %>
+      <%= f.submit "Sign Up", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

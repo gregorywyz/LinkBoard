@@ -1,0 +1,13 @@
+<h2>Posts Index</h2>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <% @posts.each do |p| %>
+
+      <li><%= link_to p.title, p.link %></li>
+      <%= link_to "Edit this Post", edit_post_path(p.id), :class=>"btn btn-primary" %>
+      <%= link_to "Delete this Post", post_path(p.id), :method => :delete, :class=>"btn btn-danger" %>
+
+    <% end %>
+  </div>
+</div>
