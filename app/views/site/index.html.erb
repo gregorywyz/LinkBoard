@@ -8,6 +8,7 @@
         <tr>
           <th class="text-center">Vote</th>
           <th class="text-center">Rating</th>
+          <th class="text-center">Comment</th>
           <th>Link</th>
           <th class="text-right">Member</th>
         </tr>
@@ -25,8 +26,9 @@
               <%= f.hidden_field :value, value: -1 %>
               <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-hand-down" %>
             <% end %>
-          </td>
+          </td class="text-center">
           <td class="text-center"><%= post.votes.reduce(0){|sum, v| sum += v.value} %></td>
+          <td class="text-center"><%= link_to "<i class=\"glyphicon glyphicon-pencil\"></i>".html_safe, post_comments_path(post), :class=>"btn btn-info" %></td>
           <td><%= link_to post.title, post.link %></td>
           <td class="text-right"><%= post.user.email %></td>
         </tr>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :votes, :only => [:create]
+    resources :comments
   end
 
   get 'login' => 'sessions#new'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :votes, :only => [:create]
+    resources :comments
   end
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

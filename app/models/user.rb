@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :votes, as: :votable
   # votes FROM this user (via user_id foreign key)
   has_many :ratings, class_name: "Vote"
+  has_many :comments
 
   validates :name,
     presence: true,

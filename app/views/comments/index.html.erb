@@ -1,0 +1,8 @@
+<h2>New Comment Page</h2>
+
+<h3><%= @post.title %></h3>
+
+    <%= bootstrap_form_for [@post, @comment] do |f| %>
+      <%= f.text_field :body, placeholder: "Enter your comment", icon: "pencil" %>
+      <%= f.submit "Create Comment", class: "btn btn-primary" %>
+    <% end %>
