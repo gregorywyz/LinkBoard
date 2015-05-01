@@ -28,8 +28,8 @@
             <% end %>
           </td class="text-center">
           <td class="text-center"><%= post.votes.reduce(0){|sum, v| sum += v.value} %></td>
-          <td class="text-center"><%= link_to "<i class=\"glyphicon glyphicon-pencil\"></i>".html_safe, post_comments_path(post), :class=>"btn btn-info" %></td>
-          <td><%= link_to post.title, post.link %></td>
+          <td class="text-center"><%= link_to "<i class=\"glyphicon glyphicon-pencil\"></i>".html_safe, new_post_comment_path(post), :class=>"btn btn-info" %></td>
+          <td><%= link_to post.title, post.link %> | <%= link_to "comments", post_comments_path(post) %></td>
           <td class="text-right"><%= post.user.email %></td>
         </tr>
         <% end %>

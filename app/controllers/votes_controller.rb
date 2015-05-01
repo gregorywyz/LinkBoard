@@ -4,7 +4,9 @@ class VotesController < ApplicationController
 
   def create
 
-    if params.key?(:post_id)
+    if params.key?(:comment_id)
+      thing = Comment.find_by_id(params[:comment_id])
+    elsif params.key?(:post_id)
       thing = Post.find_by_id(params[:post_id])
     elsif params.hey?(:user_id)
       thing = User.find_by_id(params[:user_id])
@@ -27,7 +29,13 @@ class VotesController < ApplicationController
       end
     end
 
+   if params.key?(:comment_id)
+    redirect_to post_comments_path(params[:post_id])
+  else
     redirect_to root_path
+  end
+
+
 
     # # for ajax
     # repond_to do |format|
