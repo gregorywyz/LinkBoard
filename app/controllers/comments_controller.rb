@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_action :is_authenticated?, except: [:index]
+
   def index
     @post = Post.find(params[:post_id])
     @comments = @post.comments.order(created_at: :desc)
@@ -17,7 +19,7 @@ class CommentsController < ApplicationController
     current_user.comments << @post.comments.create(comment_params)
 
     flash[:success] = "You added a comment"
-    redirect_to post_path(@post)
+    redirect_to posts_path(@post)
   end
 
   private

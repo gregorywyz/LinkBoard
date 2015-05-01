@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.all
     @posts = current_user.posts
+    @vote = Vote.new
   end
 
   def new

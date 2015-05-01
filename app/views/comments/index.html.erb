@@ -9,11 +9,15 @@
 
   <p><%= @post.user.email %></p>
 
-  <%= link_to "<i class=\"glyphicon glyphicon-pencil\"></i>".html_safe, new_post_comment_path(@post.id), :class=>"btn btn-primary" %>
+  <%= link_to " New", new_post_comment_path(@post.id), :class=>"btn btn-primary glyphicon glyphicon-comment" %>
+
+
 
   <table class="table table-hover">
     <thead>
       <tr>
+        <th class="text-center">Vote</th>
+        <th>Member</th>
         <th>Comments</th>
       </tr>
     </thead>
@@ -21,23 +25,29 @@
 
       <% @comments.each do |comment| %>
         <tr>
-          <td><%= comment.user.email %> : <%= comment.body %></td>
-        </tr>
-        <tr>
-          <td>
-            <span>
-            <%= bootstrap_form_for [@post, comment, @vote] do |f| %>
-              <%= f.hidden_field :value, value: 1 %>
-              <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-hand-up" %>
-            <% end %>
-            <%= bootstrap_form_for [@post, comment, @vote] do |f| %>
-              <%= f.hidden_field :value, value: -1 %>
-              <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-hand-down" %>
-            <% end %>
-            </span>
-            <span>Rating: <%= comment.votes.reduce(0){|sum, v| sum += v.value} %></span>
+          <td class="text-center">
+            <div class="row">
+              <div class="col-xs-12">
+                <%= bootstrap_form_for [@post, comment, @vote] do |f| %>
+                  <%= f.hidden_field :value, value: 1 %>
+                  <%= f.button "", class: "btn btn-link btn-xs glyphicon glyphicon-hand-up" %>
+                <% end %>
+              </div>
+              <div class="col-xs-12">
+                <%= comment.votes.reduce(0){|sum, v| sum += v.value} %>
+              </div>
+              <div class="col-xs-12">
+                <%= bootstrap_form_for [@post, comment, @vote] do |f| %>
+                  <%= f.hidden_field :value, value: -1 %>
+                  <%= f.button "", class: "btn btn-link btn-xs glyphicon glyphicon-hand-down" %>
+                <% end %>
+              </div>
+            </div>
           </td>
+          <td><%= comment.user.email %></td>
+          <td><%= comment.body %></td>
         </tr>
+
       <% end %>
 
     </tbody>
