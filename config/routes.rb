@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get 'signup' => 'users#new'
   post 'signup' => 'users#create'
+
+  resources :users do
+    resources :votes, :only => [:create]
+  end
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
 
@@ -17,8 +22,9 @@ Rails.application.routes.draw do
   # Test logout via url (for development)
   get 'logout' => 'sessions#destroy'
 
-  resources :posts
-
+  resources :posts do
+    resources :votes, :only => [:create]
+  end
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

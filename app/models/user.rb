@@ -4,7 +4,12 @@ class User < ActiveRecord::Base
 
   validates_presence_of :password, on: :create
 
+  # post created by user
   has_many :posts
+  # votes ABOUT this user (via votable)
+  has_many :votes, as: :votable
+  # votes FROM this user (via user_id foreign key)
+  has_many :ratings, class_name: "Vote"
 
   validates :name,
     presence: true,
