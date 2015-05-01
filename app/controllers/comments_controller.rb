@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
 
-  before_action :is_authenticated?
+  def index
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments.order(created_at: :desc)
+    @vote = Vote.new
+  end
 
   def new
     @comment = Comment.new
@@ -16,12 +20,6 @@ class CommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
-  def index
-    @post = Post.find(params[:post_id])
-    @comments = @post.comments
-    @vote = Vote.new
-  end
-
   private
 
   def comment_params
@@ -29,4 +27,3 @@ class CommentsController < ApplicationController
   end
 
 end
-
